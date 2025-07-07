@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar React</title>
+
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root">
+
+
+    </div>
+    <script type="text/babel">
+        const container = document.getElementById('root'); // Mendapatkan elemen root
+        const root = ReactDOM.createRoot(container); // Membuat root React
+        function Header({ name }) { // Komponen Header menerima props 'name'
+            return(<h1>Belajar react on spot {name ? name : "iwak iwak"}</h1>);
+        }
+
+        function HomePage(){
+            const students = ['ikan', 'lele', 'bandeng', 'tuna']; // Daftar siswa
+            const [likes, setLikes] = React.useState(0); // State untuk menyimpan jumlah likes
+
+            function handleLikes(action) {
+                if (action === 'increment') {
+                    setLikes(likes + 1);
+                } else if (action === 'decrement') {
+                    if (likes > 0) setLikes(likes - 1);
+                } else if (action === 'reset') {
+                    setLikes(0);
+                }
+            }
+            return (
+                <>
+                    <Header name="iwak peyek"/>
+                    <div>
+                        <button onClick={() => handleLikes('increment')}>+</button>
+                        <span>{likes}</span>
+                        <button onClick={() => handleLikes('decrement')}>-</button>
+                        
+                    </div>
+                    <button onClick={() => handleLikes('reset')}>Reset</button>
+                </>
+            );
+        }
+        root.render(<HomePage />);
+// <ul>
+                    //     {
+                    //         students.map((student)=>( // Mengiterasi daftar siswa dan membuat elemen list
+                    //             <li key={student}>{student}</li>
+                    //         ))
+                    //     }
+                    // </ul>
+    </script>
+</body>
+</html>
